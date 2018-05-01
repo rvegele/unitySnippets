@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClassName : MonoBehaviour
+public class singletonClass : MonoBehaviour
 {
 
 	#region Singleton
 
-	public static ClassName instance;
+	public static singletonClass instance;
 
 	private void Awake()
-	{
-		instance = this;
+	{   
+        if (instance == null) {
+		    instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else { 
+            Destroy(gameObject);
+        }
 	}
 
 	#endregion
